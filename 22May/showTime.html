@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<title>Show Time</title>
+	    <script>
+
+			function displayLocalTime() 
+			{
+				var time = new Date();
+				$('#localTime').html( "Local time is " + time );
+			}
+
+
+			// function formatAMPM(date) 
+			// {
+			// 	var hours = date.getHours();
+			// 	var minutes = date.getMinutes();
+			// 	var seconds = date.getSeconds();
+			// 	var ampm = hours >= 12 ? 'PM' : 'AM';
+			// 	hours = hours % 12;
+			// 	hours = hours ? hours : 12;
+			// 	minutes = minutes < 10 ? '0'+minutes : minutes;
+			// 	var localTime = "Local Time is: " + hours + ':' + minutes +':' + seconds + ' ' + ampm;
+			// 	return localTime;
+			// }
+
+			function displayServerTime()
+			{	
+				$.ajax({url: "getServerTime.php", success: function(result){
+				$("#serverTime").html(result);}});
+			}
+			setInterval(displayLocalTime, 1000);
+			setInterval(displayServerTime, 1000);
+
+
+	    </script>
+	</head>
+	<body >
+		<div id = "localTime"> </div><br>
+		<div id = "serverTime"> </div><br>
+	</body>
+</html>

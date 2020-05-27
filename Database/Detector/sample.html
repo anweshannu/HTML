@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="sample.js"></script>
+		<script type="text/javascript">
+			function getDataFromPHP()
+			{
+				$.ajax({url: "sample.php", success: function(result){
+					$("#one").html(result)
+				}});
+				// getTemp();
+			}
+		</script>
+	</head>
+	<body onload="getDataFromPHP()">
+		<div id="one"></div>
+		<div id="two"></div>
+	</body>
+</html>

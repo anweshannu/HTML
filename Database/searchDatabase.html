@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang = "en">
+	<head>
+		<meta charset = "utf-8">
+	</head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>		
+	<script>
+		function getDatabases()
+		{
+			$.ajax({url: "getDatabaseList.php", success: function(result){$("#showList").html(result);}});
+		}
+		function getTables()
+		{
+        	var sel = document.getElementById("databaseList");
+        	var selectValue = sel.options[sel.selectedIndex].value;
+        	$.ajax({url: "getTables.php?dbName=" + selectValue,
+        		success: function(result) {$("#showTables").html(result);
+                $("#tableSubmit").html("<button onclick='getTableData()'>Submit</button>");}});
+    	}
+    	function getTableData()
+		{
+			$("#printTable").html("<img src = loading.gif />");
+			var sel = document.getElementById("databaseList");
+            var dbname = sel.options[sel.selectedIndex].value;
+			var sel = document.getElementById("table");
+            var tablename = sel.options[sel.selectedIndex].value;
+            $.ajax({url: "http://165.22.14.77:8080/Satish/19May/getTableData.jsp?db="+dbname+"&table="+tablename, crossDomain: "true", success: function(result){$("#printTable").html(result);}});
+        }	
+	</script>
+	<body onload = "getDatabases()">
+		
+		<title>Database search</title>
+		
+
+		<center>
+		<div>
+			<h3>Please select a database</h3>
+			<label for="Database">Choose a database:</label>
+		</div>
+		<div id = "showList">
+		</div>
+		<div>
+		<button onclick = "getTables()">Submit</button>
+		</div>
+		<div id = "showTables">
+		</div>
+		<div id = "tableSubmit">
+		</div>
+		<div id = "printTable">
+			
+		</div>
+		</center>		
+
+	</body>
+</html>	

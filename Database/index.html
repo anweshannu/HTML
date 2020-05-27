@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+	<meta charset = "utf-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+		function loadDatabase()
+		{
+			$.ajax({url: "GetDatabaseNames.php", success: function(result) 
+			{
+				$("#DisplayDatabases").html(result);
+			}});
+		}
+		function getTableNames()
+		{
+			var sel = document.getElementById("databases");
+			var db = sel.options[sel.selectedIndex].value;
+			$.ajax({url: "GetTableNames.php?dbName=" + db, success: function(result) 
+			{
+				$("#DisplayTables").html(result);
+			}});
+		}
+		function getData()
+		{
+                        $("#Tabledata").html("<img src = loading.gif />");
+			var sel = document.getElementById("databases");
+                        var dbname = sel.options[sel.selectedIndex].value;
+			var sel = document.getElementById("tables");
+                        var tablename = sel.options[sel.selectedIndex].value;
+                        $.ajax({url: "http://165.22.14.77:8080/Anudeep/PrintTableData.jsp?db="+dbname+"&table="+tablename, crossDomain: "true", success: function(result)
+                        {
+                                $("#Tabledata").html(result);
+                        }});
+                }
+		
+	</script>
+</head>
+<body onload = "loadDatabase()">
+	<div id = "DisplayDatabases"></div>
+	<div id = "DisplayTables"></div>
+	<div id = "Tabledata"></div>
+</body>
+
+</html>
+

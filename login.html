@@ -1,0 +1,45 @@
+<!-- Save login details using cookie. -->
+<!DOCTYPE html>
+<html lang="en">
+	 <head>
+		<meta charset="UTF-8">
+		<title>Login</title>
+		<h3>Login</h3>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	 	<script>
+		 	function initialize()
+		 	{
+		 		$("#username").val('');
+		 		if(document.cookie.length != 0)
+		 		{
+		 			var loginCredentialsArr = document.cookie.split(";");
+		 			var usernames = loginCredentialsArr[0].split("=");
+		 			var passwords = loginCredentialsArr[1].split("=");
+		 			$("#username").val(usernames[1]);
+		 			$("#password").val(passwords[1]);
+		 		}
+		 	}
+			function SaveLoginDetails()
+			{
+				var checkBox = document.getElementById("checkbox");
+				if (checkBox.checked == true)
+				{
+					var userName = $("#username").val();
+					var password = $("#password").val();
+					document.cookie = "Username = " + userName + ";expires=Tue, 18 May 2020 12:00:00 UTC";
+					document.cookie = "Password = " + password + ";expires=Tue, 18 May 2020 12:00:00 UTC";
+				}
+				$("#username").val("");
+				$("#password").val("");
+				$("#checkbox"). prop("checked", false);
+			}
+		 </script>
+	 </head>
+	 <body onload="initialize()">
+		User Id: <input type="text" id="username"><br>
+		Password: <input type="text" id="password"><br>
+		<input type="checkbox" id="checkbox">
+		<label for="checkbox">Save login details</label><br>
+		<input type="submit" value = "Login" id="button" onclick = "SaveLoginDetails()">
+	 </body>
+</html>

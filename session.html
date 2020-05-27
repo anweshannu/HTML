@@ -1,0 +1,39 @@
+<!-- Save login details using session. -->
+<!DOCTYPE html>
+<html lang = "en">
+	<head>
+		<meta charset = "utf-8">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<title>Welcome to Login page</title>
+		<h3>Login</h3>
+		<script>
+			function saveLoginDetails()
+			{
+
+				if(checkbox.checked == 1)
+				{
+					sessionStorage.setItem("username", $("#username").val());
+					sessionStorage.setItem("password", $("#password").val());	
+				}
+				$("#username").val("");
+				$("#password").val("");
+				$("#checkbox"). prop("checked", false);
+			}
+			function initialize()
+			{
+				username.value = sessionStorage.getItem("username");
+				password.value = sessionStorage.getItem("password");
+
+			}
+		</script>
+	</head>
+	<body onload="initialize()">
+		User name:&nbsp;
+		<input type = "text" name = "username" id ="username"><br>
+		Password:&nbsp;
+		<input type = "text" name = "password" id ="password"><br>
+		<input type="checkbox" id="checkbox">Save login details<br>
+		<input type = "button" name = "login" value = "Login" onclick = "saveLoginDetails()">
+
+	</body>
+</html>

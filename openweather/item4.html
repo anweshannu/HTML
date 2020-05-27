@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset = "utf-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+        $(document).ready(function() {
+          $("#searchBtn").click(function() {
+            getItemDetails();
+          });
+        });
+      </script>
+        <script>
+            function getItemDetails()
+            {
+                try
+                {
+                    $("#details").html('<img src="loading.gif" />');
+                    $.ajax
+                    (
+                        {
+                            url: "getItemDetails.php?itemid=" + $("#itemid").val(), 
+                            success: function(result){$("#details").html(result); },
+                            error: function() {
+                                getItemDetails();
+                                console.clear();
+                                $('#details').html('No internet connection.');}
+                        }
+                    );
+                }
+                catch(err)
+                {
+                    // console.log(err.message);
+                    $('#details').html('Something went wrong please try again.');
+                }
+            }
+             
+        </script>
+    </head>
+    <body>
+    
+        <div align = "center">
+            <h3>Search an Item</h3>
+            Item Id:&nbsp;
+            <input type = "text" name = "itemid" id ="itemid" placeholder="Enter Item Id" />
+            <!-- <input type = "text" name = "itemid" id ="itemid" placeholder="Enter Item Id" onkeyup="getItemDetails();"/> -->
+            <button type="button" id = "searchBtn" >Get item details</button>
+            <!-- <button type="button" onclick = "getItemDetails();">Get item details</button> -->
+        </div><br>
+
+        <div id = "details" align = "center">
+        </div>
+
+    </body>
+</html>
+
+

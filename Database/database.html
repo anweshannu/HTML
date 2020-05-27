@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Database operations</title>
+</head>
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $("#details").html('<img src="loading.gif" />');
+        $.ajax({url: "trial.php", success: function(result){$("#details").html(result); }});
+         
+    </script>
+<div id = "details"> 
+   
+</div>
+</body>
+</html>

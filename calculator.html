@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <script src = "script.js"></script>
+    <link rel = "stylesheet" href="style.css">
+    
+  </head>  
+  <body>
+    <center>
+    <h1 align = "center"> Calculator</h1>
+    <input type="textbox" id="inputbox" value="Enter expression" onfocus="this.value=''" />
+    <br><br>
+    <button onclick="calculate()" id="button" >Calculate</button>
+
+    <script>
+      var input = document.getElementById("inputbox");
+      input.addEventListener("keyup", function(event)
+      {
+        if (event.keyCode == 13) 
+        {
+         event.preventDefault();
+         document.getElementById("button").click();
+        }
+      }
+      );
+    </script>
+      </center>
+  </body>
+</html>

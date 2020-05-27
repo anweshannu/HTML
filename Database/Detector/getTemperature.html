@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script>
+			function getTemp()
+			{
+				var city_name = $("#cityname").val();
+				var api_key = "251839045afcb2c38c6eba2d270899cd";
+				$.getJSON("http://api.openweathermap.org/data/2.5/weather?q="+city_name+"&units=metric&APPID="+api_key, function(data){
+					$("#results").html(data["main"]["temp"])
+					console.log(data["main"]["temp"])
+				});
+			}
+		</script>
+	</head>
+	<body>
+		<input type="text" name="cityname" id="cityname" placeholder="Enter city name">
+		<button onclick="getTemp()">Submit</button>
+		<div id="results"></div>
+	</body>

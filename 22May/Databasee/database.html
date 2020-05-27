@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+		<title>Database explorer</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+
+		    <script>
+		    	var dbname;
+		    	function getDatabaseList()
+		    	{
+			        $("#displayList").html('<img src="loading.gif" />');
+			        $.ajax({url: "getDatabaseList.php", success: function(result){$("#displayList").html(result); }});
+		    	}
+		    	function getTablesList()
+		    	{
+		    		var sel = document.getElementById("databaseList");
+		    		var selected_database = sel.options[sel.selectedIndex].value;
+			        $("#showTables").html('<img src="loading.gif" />');
+			        $.ajax({url: "getTableList.php?db_name="+ selected_database, success: function(result){$("#showTables").html(result); 
+			        }});
+		    	}
+		    	function getTableData()
+		    	{
+		         	$("#printTable").html("<img src = loading,gif/>");
+		         	var sel = document.getElementById("databaseList");
+		            dbname = sel.options[sel.selectedIndex].value;
+					var sel = document.getElementById("table");
+		            var tablename = sel.options[sel.selectedIndex].value;
+			        $("#displayTable").html('<img src="loading.gif" />');
+		            $.ajax({url: "http://165.22.14.77:8080/Anwesh/Database/getTableData.jsp?db="+dbname+"&table="+tablename, success: function(result){$("#displayTable").html(result);}});
+		    	}
+		    	function deleteItem(id)
+		    	{
+		    		$.ajax({url: "deleteItem.php?db=" + dbname + "&itemid="+ id, success:function(result){getTableData();} });
+		    	}
+		    </script>
+		    <h3 align = "center">Database explorer</h3>
+	</head>
+	<body onload = "getDatabaseList();">
+		<center>
+			<div id = "displayList"> </div><br>
+			
+			<div id = "showTables"></div><br>
+
+			<div id = "tableSubmit"></div><br>
+
+			<div id = "displayTable" class="container"></div>
+		</center>
+	</body>
+	</html>

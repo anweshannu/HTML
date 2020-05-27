@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-browser/0.1.0/jquery.browser.min.js"></script>
+		<script>
+			console.log($.browser)
+			function getDataFromPHP()
+			{
+				$.ajax({url: "data.php", success: function(result){
+					$("#Details").html(result)
+				}});
+				document.write("You are accessing through " + $.browser.name + " browser on " + $.browser.platform + " platform.");
+			}
+
+			function getTemp(city_name)
+			{
+				var api_key = "251839045afcb2c38c6eba2d270899cd";
+				$.getJSON("http://api.openweathermap.org/data/2.5/weather?q="+city_name+"&units=metric&APPID="+api_key, function(data){
+					$("#two").html("The temperature in "+city_name+" is "+data["main"]["temp"]+".");
+					console.log(data["main"]["temp"])
+				});
+			}
+		</script>
+	</head>
+	<body onload="getDataFromPHP()">
+		<div id="Details"></div>
+		<div id="Temperature"></div>
+	</body>
+</html>
