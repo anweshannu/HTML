@@ -3,29 +3,52 @@
   <head>
     <meta charset="utf-8">
 
-    <script src = "script.js"></script>
-    <link rel = "stylesheet" href="style.css">
+    <title>Calculator</title>
+   
+    <link rel="stylesheet" href="./calculator.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./calculator.js"></script>
     
   </head>  
   <body>
     <center>
-    <h1 align = "center"> Calculator</h1>
-    <input type="textbox" id="inputbox" value="Enter expression" onfocus="this.value=''" />
-    <br><br>
-    <button onclick="calculate()" id="button" >Calculate</button>
-
-    <script>
+      <h1>Calculator</h1>
+      <input type= "text" id="inputbox" style="height: 30px; width: 210px; font-size: 20px" autofocus /> <br>
+      <button id="7" style="margin:6px;height: 30px; width: 40px; font-size:20px" onclick="concatAndInsertText('inputbox','7')">7</button>
+      <button id="8" style="margin:6px;height: 30px; width: 40px; font-size:20px" onclick="concatAndInsertText('inputbox','8')">8</button>
+      <button id="9" style="margin:6px;height: 30px; width: 40px; font-size:20px" onclick="concatAndInsertText('inputbox','9')">9</button>
+      <button id="/" style="margin:6px;height: 30px; width: 40px; font-size:20px" onclick="concatAndInsertText('inputbox','/')">÷</button><br>
+      <button id="4" style="margin:6px;height: 30px; width: 40px; font-size:20px" onclick="concatAndInsertText('inputbox','4')">4</button>
+      <button id="5" style="margin:6px;height: 30px; width: 40px; font-size:20px" onclick="concatAndInsertText('inputbox','5')">5</button>
+      <button id="6" style="margin:6px;height: 30px; width: 40px; font-size:20px" onclick="concatAndInsertText('inputbox','6')">6</button>
+      <button id="x" style="margin:6px;height: 30px; width: 40px; font-size:20px" onclick="concatAndInsertText('inputbox','*')">x</button><br>
+      <button id="1" style="margin:6px;height: 30px; width: 40px; font-size:20px" onclick="concatAndInsertText('inputbox','1')">1</button>
+      <button id="2" style="margin:6px;height: 30px; width: 40px; font-size:20px" onclick="concatAndInsertText('inputbox','2')">2</button>
+      <button id="3" style="margin:6px;height: 30px; width: 40px; font-size:20px" onclick="concatAndInsertText('inputbox','3')">3</button>
+      <button id="-" style="margin:6px;height: 30px; width: 40px; font-size:20px" onclick="concatAndInsertText('inputbox','-')">-</button><br>
+      <button id="0" style="margin:6px;height: 30px; width: 40px; font-size:20px" onclick="concatAndInsertText('inputbox','0')">0</button>
+      <button id="." style="margin:6px;height: 30px; width: 40px; font-size:20px" onclick="concatAndInsertText('inputbox','.')">.</button>
+      <button id="=" style="margin:6px;height: 30px; width: 40px; font-size:20px" onclick="calculate('inputbox')">=</button>
+      <button id="+" style="margin:6px;height: 30px; width: 40px; font-size:20px" onclick="concatAndInsertText('inputbox','+')">+</button><br>
+      <button id="clear" style="margin:6px;height: px; width: 210px; font-size:20px" onclick="document.getElementById('inputbox').value=''">Clear</button>
+      
+      <script>
       var input = document.getElementById("inputbox");
       input.addEventListener("keyup", function(event)
       {
         if (event.keyCode == 13) 
         {
          event.preventDefault();
-         document.getElementById("button").click();
+         document.getElementById("=").click();
         }
+        else if (event.keyCode == 32) 
+        {
+         event.preventDefault();
+         document.getElementById("clear=").click();
+        } 
       }
       );
-    </script>
-      </center>
+      </script>
+    </center>
   </body>
 </html>
