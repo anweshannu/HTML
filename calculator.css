@@ -1,0 +1,21 @@
+/* CSS files add styling rules to your content */
+
+body {
+  font-family: helvetica, arial, sans-serif;
+  margin: 2em;
+}
+
+h1 {
+  font-style: bold;
+  color: black;
+}
+
+input[type=text] {
+  border-width: thin;
+  border-style: groove;
+  border-color: #736E61;
+  width: 100%;
+  padding: 18px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
